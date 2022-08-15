@@ -1,3 +1,4 @@
+from ast import Pass
 from itertools import count
 from pickle import TRUE
 import random
@@ -105,6 +106,7 @@ class Truco:
                     
                     
                 if cont == 3:
+                    self.value_card = [first_card, sec_card, third_card]
                     break
 
             #Has Very good card       
@@ -123,6 +125,7 @@ class Truco:
                     
                     
                 if cont == 3:
+                    self.value_card = [first_card, sec_card, third_card]
                     break
 
             #Has Good card           
@@ -140,6 +143,7 @@ class Truco:
                     cont +=  1
 
                 if cont == 3:
+                    self.value_card = [first_card, sec_card, third_card]
                     break
             
             #Has Bad card   
@@ -157,9 +161,26 @@ class Truco:
                     cont +=  1
                 
                 if cont == 3:
-                    break
+                    self.value_card = [first_card, sec_card, third_card]
+                    break    
 
-        #rounds           
+        def strategy_pc():
+            random_strategy = random.randint(1, 3)
+            if random_strategy == 1:
+                if self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good':
+                    if self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
+                        self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
+                        #if pc has this cards it can use this strategy
+                        #so it can call truco 
+                        pass
+                else:
+                    #can't use the strategy 
+                    #play normal
+                    #doesn't accept truco
+                    print('ok2')
+                    pass
+        
+        #rounds for user          
         for round in range(3):
 
             #First round
@@ -180,12 +201,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #b_card
+                                usercard_chose1 = [self.self.user_cards[1], self.user_cards[4]]
                                 self.user_cards.remove(self.user_cards.remove[1])
                                 self.user_cards.remove(self.user_cards.remove[4])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #a_card 
+                                usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
                                 self.user_cards.remove(self.user_cards.remove[0])
                                 self.user_cards.remove(self.user_cards.remove[3])
                                 round += 1
@@ -196,12 +219,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #c_card
+                                usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
                                 self.user_cards.remove(self.user_cards.remove[2])
                                 self.user_cards.remove(self.user_cards.remove[5])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #a_card 
+                                usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
                                 self.user_cards.remove(self.user_cards.remove[0])
                                 self.user_cards.remove(self.user_cards.remove[3])
                                 round += 1
@@ -212,12 +237,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #c_card
+                                usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
                                 self.user_cards.remove(self.user_cards.remove[2])
                                 self.user_cards.remove(self.user_cards.remove[5])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #b_card 
+                                usercard_chose1 = [self.self.user_card[1], self.user_cards[4]]
                                 self.user_cards.remove(self.user_cards.remove[1])
                                 self.user_cards.remove(self.user_cards.remove[4])
                                 round += 1
@@ -225,20 +252,25 @@ class Truco:
                 #else
                 if round_1 in self.user_cards:
                     if round_1 == self.user_cards[0]:
+                        usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
                         self.user_cards.remove(self.user_cards[3])
                         self.user_cards.remove(round_1)
                         round += 1
                         
                     elif round_1 ==  self.user_cards[1]:
+                        usercard_chose1 = [self.self.user_cards[1], self.user_cards[4]]
                         self.user_cards.remove(self.user_cards[4])
                         self.user_cards.remove(round_1)
                         round += 1
 
                     elif round_1 ==  self.user_cards[2]:
+                        usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
                         self.user_cards.remove(self.user_cards[5])
                         self.user_cards.remove(round_1)
                         round += 1
                 
+
+
                 #error
                 else:
                     print('Error, this card is not available')
@@ -258,12 +290,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #b_card
+                                usercard_chose2 = [self.self.user_cards[1], self.user_cards[3]]
                                 self.user_cards.remove(self.user_cards.remove[1])
                                 self.user_cards.remove(self.user_cards.remove[3])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #a_card 
+                                usercard_chose2 = [self.self.user_cards[0], self.user_cards[2]]
                                 self.user_cards.remove(self.user_cards.remove[0])
                                 self.user_cards.remove(self.user_cards.remove[2])
                                 round += 1
@@ -271,6 +305,7 @@ class Truco:
 
                 if round_2 in self.user_cards:
                     if round_2 == self.user_cards[0]:
+                        usercard_chose2 = [self.self.user_cards[0], self.user_cards[2]]
                         self.user_cards.remove(self.user_cards[2])
                         self.user_cards.remove(round_2)
                         round += 1
@@ -286,7 +321,8 @@ class Truco:
             #Terceiro round
             if round == 2:
                 print(f'The only card left is: {self.user_cards}')
+                usercard_chose3 = [self.self.user_cards[0], self.user_cards[1]]
                 self.user_cards.remove(self.user_cards[0] and self.user_cards[1])
                 return
-            
+
 truco = Truco()
