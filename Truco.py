@@ -166,20 +166,38 @@ class Truco:
 
         def strategy_pc():
             random_strategy = random.randint(1, 3)
-            if random_strategy == 1:
-                if self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good':
-                    if self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
-                        self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
-                        #if pc has this cards it can use this strategy
-                        #so it can call truco 
-                        pass
-                else:
-                    #can't use the strategy 
-                    #play normal
-                    #doesn't accept truco
-                    print('ok2')
+
+            if random_strategy == 1 and\
+                self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good' or\
+                self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
+                self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
+                    #if pc has this cards it can use this strategy
+                    #so it can call truco 
                     pass
-        
+
+            elif random_strategy == 2 and\
+                self.value_card[0] == 'Very Good' and self.value_card[1] == 'Very Good' or\
+                    self.value_card[0] == 'Very Good' or self.value_card[2] == 'Very Good' or\
+                    self.value_card[1] == 'Very Good' or self.value_card[2] == 'Very Good' or\
+                        self.value_card[0] == 'Manilha' or  self.value_card[1] == 'Manilha' or  self.value_card[2] == 'Manilha': 
+                    ##if pc has this cards it can use this strategy
+                    #so it can call truco 
+                    pass 
+
+            elif random_strategy == 3 and\
+                self.value_card[0] == 'Good' and self.value_card[1] == 'Good'\
+                and self.value_card[2] == 'Good' or self.value_card[0:2] == 'Manilha':
+                    ##if pc has this cards it can use this strategy
+                    #so it can call truco 
+                    pass
+                 
+            else:
+                #can't use the strategy 
+                #play normal
+                #doesn't accept truco
+                print('ok2')
+                pass
+
         #rounds for user          
         for round in range(3):
 
