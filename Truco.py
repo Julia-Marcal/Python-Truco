@@ -4,6 +4,7 @@ from pickle import TRUE
 import random
 import string
 from timeit import repeat
+from typing_extensions import Self
 
 """
 #Array of cards and suits.
@@ -88,7 +89,7 @@ class Truco:
                 break
 
         #Checking pc cards
-        for cont in range(3):
+        for cont in range(4):
 
             #Has Manilha card
             if self.pc_cards[cont] == self.manilha:
@@ -166,30 +167,132 @@ class Truco:
 
         def strategy_pc():
             random_strategy = random.randint(1, 3)
+            print(self.value_card)
 
             if random_strategy == 1 and\
                 self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good' or\
                 self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
                 self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
-                    #if pc has this cards it can use this strategy
-                    #so it can call truco 
-                    pass
+                #if pc has this cards it can use this strategy
+                #so it can call truco 
+                    
+                    #pc chooses order of cards to play
+                    if self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[0]
+                        self.card_use1_suits = self.pc_cards[3]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[1]
+                        self.card_use1_suits = self.pc_cards[4]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[2]
+                        self.card_use1_suits = self.pc_cards[5]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4]
+                       
 
             elif random_strategy == 2 and\
                 self.value_card[0] == 'Very Good' and self.value_card[1] == 'Very Good' or\
                     self.value_card[0] == 'Very Good' or self.value_card[2] == 'Very Good' or\
-                    self.value_card[1] == 'Very Good' or self.value_card[2] == 'Very Good' or\
-                        self.value_card[0] == 'Manilha' or  self.value_card[1] == 'Manilha' or  self.value_card[2] == 'Manilha': 
+                    self.value_card[1] == 'Very Good' or self.value_card[2] == 'Very Good': 
                     ##if pc has this cards it can use this strategy
                     #so it can call truco 
-                    pass 
+                    
+                    if self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[0]
+                        self.card_use1_suits = self.pc_cards[3]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[1]
+                        self.card_use1_suits = self.pc_cards[4]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[2]
+                        self.card_use1_suits = self.pc_cards[5]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4]
+                    
 
             elif random_strategy == 3 and\
                 self.value_card[0] == 'Good' and self.value_card[1] == 'Good'\
                 and self.value_card[2] == 'Good' or self.value_card[0:2] == 'Manilha':
                     ##if pc has this cards it can use this strategy
                     #so it can call truco 
-                    pass
+                    
+                    if self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good' or\
+                        self.value_card[0] == 'Good' :
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[0]
+                        self.card_use1_suits = self.pc_cards[3]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
+                        self.value_card[1] == 'Good' :
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[1]
+                        self.card_use1_suits = self.pc_cards[4]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[2]
+                        self.card_use2_suits = self.pc_cards[5]
+
+                    elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good' or\
+                        self.value_card[2] == 'Good' :
+                        #first card to use pc
+                        self.card_use1 = self.pc_cards[2]
+                        self.card_use1_suits = self.pc_cards[5]
+                        #second card to use pc
+                        self.card_use2 = self.pc_cards[0]
+                        self.card_use2_suits = self.pc_cards[3] 
+                        #third card to use pc
+                        self.card_use2 = self.pc_cards[1]
+                        self.card_use2_suits = self.pc_cards[4]
                  
             else:
                 #can't use the strategy 
@@ -197,6 +300,8 @@ class Truco:
                 #doesn't accept truco
                 print('ok2')
                 pass
+
+        strategy_pc()
 
         #rounds for user          
         for round in range(3):
