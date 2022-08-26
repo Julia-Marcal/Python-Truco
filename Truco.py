@@ -4,7 +4,6 @@ from pickle import TRUE
 import random
 import string
 from timeit import repeat
-from typing_extensions import Self
 
 """
 #Array of cards and suits.
@@ -91,8 +90,12 @@ class Truco:
         #Checking pc cards
         for cont in range(4):
 
+            if cont == 3:
+                    self.value_card = [first_card, sec_card, third_card]
+                    break 
+
             #Has Manilha card
-            if self.pc_cards[cont] == self.manilha:
+            elif self.pc_cards[cont] == self.manilha:
                 if cont == 0:
                     first_card = "Manilha"
                     cont += 1
@@ -104,11 +107,7 @@ class Truco:
                 elif cont == 2:
                     third_card = "Manilha"
                     cont +=  1
-                    
-                    
-                if cont == 3:
-                    self.value_card = [first_card, sec_card, third_card]
-                    break
+                
 
             #Has Very good card       
             elif self.pc_cards[cont] in self.truco_cards[:3]:
@@ -124,10 +123,6 @@ class Truco:
                     third_card = "Very Good"
                     cont +=  1
                     
-                    
-                if cont == 3:
-                    self.value_card = [first_card, sec_card, third_card]
-                    break
 
             #Has Good card           
             elif self.pc_cards[cont] in self.truco_cards[2:6]:
@@ -142,10 +137,6 @@ class Truco:
                 elif cont == 2:
                     third_card = "Good"
                     cont +=  1
-
-                if cont == 3:
-                    self.value_card = [first_card, sec_card, third_card]
-                    break
             
             #Has Bad card   
             elif self.pc_cards[cont] in self.truco_cards[5:-1]:
@@ -160,14 +151,10 @@ class Truco:
                 elif cont == 2:
                     third_card = "Bad"
                     cont +=  1
-                
-                if cont == 3:
-                    self.value_card = [first_card, sec_card, third_card]
-                    break    
-
+                   
+        #strategy of pc
         def strategy_pc():
             random_strategy = random.randint(1, 3)
-            print(self.value_card)
 
             if random_strategy == 1 and\
                 self.value_card[0] == 'Manilha' or self.value_card[0] == 'Very Good' or\
@@ -298,13 +285,13 @@ class Truco:
                 #can't use the strategy 
                 #play normal
                 #doesn't accept truco
-                print('ok2')
                 pass
 
         strategy_pc()
 
         #rounds for user          
         for round in range(3):
+            self.user_score = 0
 
             #First round
             if round == 0:
@@ -375,7 +362,7 @@ class Truco:
                 #else
                 if round_1 in self.user_cards:
                     if round_1 == self.user_cards[0]:
-                        usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
+                        usercard_chose1 = [self.user_cards[0], self.user_cards[3]]
                         self.user_cards.remove(self.user_cards[3])
                         self.user_cards.remove(round_1)
                         round += 1
@@ -392,12 +379,39 @@ class Truco:
                         self.user_cards.remove(round_1)
                         round += 1
                 
-
-
                 #error
                 else:
                     print('Error, this card is not available')
                     return
+
+                #comparação de cartas
+                if check_rep or round_1 in self.user_cards:
+
+                    index_user_1 = self.truco_cards.index(usercard_chose1[0])
+                    index_pc_1 = self.truco_cards.index(self.card_use1)
+
+                    index_user_1_suit = self.truco_cards.index(usercard_chose1[1])
+                    index_pc_1_suit = self.truco_suits.index(self.card_use1_suits)
+
+                    #checking who wins the first round
+                    if index_pc_1 == self.manilha or index_user_1 < index_pc_1 and index_pc_1 != self.manilha:
+                        print(f'The card your opponent chose was: {self.card_use1}')
+                        self.user_score += 1
+                        print('You won this round!')
+
+                    elif index_pc_1 == index_user_1:
+                        if index_user_1_suit < index_pc_1_suit:
+                            print(f'Both of you chose to play: {self.card_use1}')
+                            self.user_score += 1
+                            print(f'But your suit was better')
+                        elif index_user_1_suit > index_pc_1_suit:
+                            print(f'You and your opponent played: {self.card_use1}')
+                            print(f'But your suit was worse than his')
+                    
+                    elif index_pc_1 > index_user_1 or index_pc_1 == self.manilha:
+                        print(f'You lost the first round!')
+                        print(f'Your enemy played: {self.card_use1}')
+
 
             #Second round
             if round == 1:
@@ -448,4 +462,5 @@ class Truco:
                 self.user_cards.remove(self.user_cards[0] and self.user_cards[1])
                 return
 
-truco = Truco()
+if __name__ == '__main__':
+    truco = Truco()
