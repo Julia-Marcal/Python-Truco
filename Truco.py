@@ -9,13 +9,16 @@ from timeit import repeat
 #Array of cards and suits.
 #Random list of cards of the pc and the user.
 #Random card on the table.
+
 #3 rounds 
 #Make pc play smart (play strong cards when losing) (And teach how to lie). 
+
 #Teach the rules of the game:
     #Cards
         #Manilha is the strongest card, it is the card after the "vira".
         #Vira is a random card put on the table to define what the manilha will be.
         #Order of the strongest number and suits.
+
     #Points (max 12 points)
         #Truco not accepted = 1 point.
         #Truco accepted = 3 Points.
@@ -27,6 +30,7 @@ from timeit import repeat
         #When someone has 11 points in the game is not legal to ask for truco.
         #When two player has 11 points everybody show their cards and play like this until the end.
         #You can choose not to show your card, but it won't have any value to the round.
+
     #Draw
         #If the game draws on the first round, the person who wins the second round wins. 
         #If the game draws on the second round, the person won the first round wins.
@@ -34,6 +38,7 @@ from timeit import repeat
         #If the game draws on the third round, the person won the first round wins.
         #if all rounds are draw the there is no points won.
     
+
 """
 
 class Truco:
@@ -86,10 +91,10 @@ class Truco:
         for cont in range(4):
 
             if cont == 3:
-                    self.value_card = [first_card, sec_card, third_card]
-                    break 
+                self.value_card = [first_card, sec_card, third_card]
+                break 
 
-            else:
+            else:  
                 #Has Manilha card
                 if self.pc_cards[cont] == self.manilha:
                     if cont == 0:
@@ -103,7 +108,7 @@ class Truco:
                     elif cont == 2:
                         third_card = "Manilha"
                         cont +=  1
-                    
+                        
 
                 #Has Very good card       
                 elif self.pc_cards[cont] in self.truco_cards[:3]:
@@ -118,7 +123,7 @@ class Truco:
                     elif cont == 2:
                         third_card = "Very Good"
                         cont +=  1
-                        
+
 
                 #Has Good card           
                 elif self.pc_cards[cont] in self.truco_cards[2:6]:
@@ -133,6 +138,7 @@ class Truco:
                     elif cont == 2:
                         third_card = "Good"
                         cont +=  1
+
                 
                 #Has Bad card   
                 elif self.pc_cards[cont] in self.truco_cards[5:-1]:
@@ -147,8 +153,8 @@ class Truco:
                     elif cont == 2:
                         third_card = "Bad"
                         cont +=  1
-                   
-        #strategy of pc
+                 
+
         def strategy_pc():
             random_strategy = random.randint(1, 3)
 
@@ -281,13 +287,13 @@ class Truco:
                 #can't use the strategy 
                 #play normal
                 #doesn't accept truco
+                print('ok2')
                 pass
 
         strategy_pc()
 
         #rounds for user          
         for round in range(3):
-            self.user_score = 0
 
             #First round
             if round == 0:
@@ -307,14 +313,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #b_card
-                                self.usercard_chose1 = [self.self.user_cards[1], self.user_cards[4]]
+                                usercard_chose1 = [self.self.user_cards[1], self.user_cards[4]]
                                 self.user_cards.remove(self.user_cards.remove[1])
                                 self.user_cards.remove(self.user_cards.remove[4])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #a_card 
-                                self.usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
+                                usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
                                 self.user_cards.remove(self.user_cards.remove[0])
                                 self.user_cards.remove(self.user_cards.remove[3])
                                 round += 1
@@ -325,14 +331,14 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #c_card
-                                self.usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
+                                usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
                                 self.user_cards.remove(self.user_cards.remove[2])
                                 self.user_cards.remove(self.user_cards.remove[5])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #a_card 
-                                self.usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
+                                usercard_chose1 = [self.self.user_cards[0], self.user_cards[3]]
                                 self.user_cards.remove(self.user_cards.remove[0])
                                 self.user_cards.remove(self.user_cards.remove[3])
                                 round += 1
@@ -343,35 +349,34 @@ class Truco:
 
                             if rep_round_1 == 0:
                                 #c_card
-                                self.usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
+                                usercard_chose1 = [self.user_cards[2], self.user_cards[5]]
                                 self.user_cards.remove(self.user_cards.remove[2])
                                 self.user_cards.remove(self.user_cards.remove[5])
                                 round += 1
 
                             elif rep_round_1 == 1:
                                 #b_card 
-                                self.usercard_chose1 = [self.self.user_card[1], self.user_cards[4]]
+                                usercard_chose1 = [self.user_card[1], self.user_cards[4]]
                                 self.user_cards.remove(self.user_cards.remove[1])
                                 self.user_cards.remove(self.user_cards.remove[4])
                                 round += 1
  
                 #else
-                elif round_1 in self.user_cards:
-
+                if round_1 in self.user_cards:
                     if round_1 == self.user_cards[0]:
-                        self.usercard_chose1 = [self.user_cards[0], self.user_cards[3]]
+                        usercard_chose1 = [self.user_cards[0], self.user_cards[3]]
                         self.user_cards.remove(self.user_cards[3])
                         self.user_cards.remove(round_1)
                         round += 1
                         
                     elif round_1 ==  self.user_cards[1]:
-                        self.usercard_chose1 = [self.self.user_cards[1], self.user_cards[4]]
+                        usercard_chose1 = [self.user_cards[1], self.user_cards[4]]
                         self.user_cards.remove(self.user_cards[4])
                         self.user_cards.remove(round_1)
                         round += 1
 
                     elif round_1 ==  self.user_cards[2]:
-                        self.usercard_chose1 = [self.self.user_cards[2], self.user_cards[5]]
+                        usercard_chose1 = [self.user_cards[2], self.user_cards[5]]
                         self.user_cards.remove(self.user_cards[5])
                         self.user_cards.remove(round_1)
                         round += 1
@@ -381,39 +386,42 @@ class Truco:
                     print('Error, this card is not available')
                     return
 
-                #comparação de cartas
-                def compare_cards_round1():
+            #comparação de cartas
+            def compare_cards():
+                print(usercard_chose1)
+                print(self.card_use1, self.card_use1_suits)
+                
+                index_user_1 = self.truco_cards.index(usercard_chose1[0])
+                index_pc_1 = self.truco_cards.index(self.card_use1)
 
-                    index_user_1 = self.truco_cards.index(self.usercard_chose1[0])
-                    index_pc_1 = self.truco_cards.index(self.card_use1)
+                index_user_1_suit = self.truco_suits.index(usercard_chose1[1])
+                index_pc_1_suit = self.truco_suits.index(self.card_use1_suits)
 
-                    index_user_1_suit = self.truco_suits.index(self.usercard_chose1[1])
-                    index_pc_1_suit = self.truco_suits.index(self.card_use1_suits)
 
-                    #checking who wins the first round
-                    if index_pc_1 == self.manilha or index_user_1 < index_pc_1 and index_pc_1 != self.manilha:
-                        print(f'The card your opponent chose was: {self.card_use1}')
+                #checking who wins the first round
+                if index_pc_1 == self.manilha or index_user_1 < index_pc_1 and index_pc_1 != self.manilha:
+                    print(f'The card your opponent chose was: {self.card_use1}')
+                    self.user_score += 1
+                    print('You won this round!')
+
+                elif index_pc_1 == index_user_1:
+                    if index_user_1_suit < index_pc_1_suit:
+                        print(f'Both of you chose to play: {self.card_use1}')
                         self.user_score += 1
-                        print('You won this round!')
-
-                    elif index_pc_1 == index_user_1:
-                        if index_user_1_suit < index_pc_1_suit:
-                            print(f'Both of you chose to play: {self.card_use1}')
-                            self.user_score += 1
-                            print(f'But your suit was better')
-                        elif index_user_1_suit > index_pc_1_suit:
-                            print(f'You and your opponent played: {self.card_use1}')
-                            print(f'But your suit was worse than his')
-                        elif index_user_1_suit == index_pc_1_suit:
-                            print(f'The two cards are literally the same')
-                    
-                    elif index_pc_1 > index_user_1 or index_pc_1 == self.manilha:
-                        print(f'You lost the first round!')
-                        print(f'Your enemy played: {self.card_use1}')
+                        print(f'But your suit was better')
+                    elif index_user_1_suit > index_pc_1_suit:
+                        print(f'You and your opponent played: {self.card_use1}')
+                        print(f'But your suit was worse than his')
+                    elif index_pc_1_suit == index_user_1_suit:
+                        print('Wow! that was a complete draw')
+                
+                elif index_pc_1 > index_user_1 or index_pc_1 == self.manilha:
+                    print(f'You lost the first round!')
+                    print(f'Your enemy played: {self.card_use1}')
 
             #Second round
             if round == 1:
-                compare_cards_round1()
+                compare_cards()
                 print(f'\nNow the cards available are: {self.user_cards}')
                 round_2 = input(f'Which one do you wanna use? ')
 
@@ -461,5 +469,4 @@ class Truco:
                 self.user_cards.remove(self.user_cards[0] and self.user_cards[1])
                 return
 
-if __name__ == '__main__':
-    truco = Truco()
+truco = Truco()
