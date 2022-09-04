@@ -174,8 +174,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[1]
                         self.card_use2_suits = self.pc_cards[4] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good':
                         #first card to use pc
@@ -185,8 +185,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
                         #first card to use pc
@@ -196,8 +196,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[1]
-                        self.card_use2_suits = self.pc_cards[4]
+                        self.card_use3 = self.pc_cards[1]
+                        self.card_use3_suits = self.pc_cards[4]
                        
 
             elif random_strategy == 2 and\
@@ -215,8 +215,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[1]
                         self.card_use2_suits = self.pc_cards[4] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good':
                         #first card to use pc
@@ -226,8 +226,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good':
                         #first card to use pc
@@ -237,8 +237,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[1]
-                        self.card_use2_suits = self.pc_cards[4]
+                        self.card_use3 = self.pc_cards[1]
+                        self.card_use3_suits = self.pc_cards[4]
                     
 
             elif random_strategy == 3 and\
@@ -256,8 +256,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[1]
                         self.card_use2_suits = self.pc_cards[4] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[1] == 'Manilha' or self.value_card[1] == 'Very Good' or\
                         self.value_card[1] == 'Good' :
@@ -268,8 +268,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[2]
-                        self.card_use2_suits = self.pc_cards[5]
+                        self.card_use3 = self.pc_cards[2]
+                        self.card_use3_suits = self.pc_cards[5]
 
                     elif self.value_card[2] == 'Manilha' or self.value_card[2] == 'Very Good' or\
                         self.value_card[2] == 'Good' :
@@ -280,8 +280,8 @@ class Truco:
                         self.card_use2 = self.pc_cards[0]
                         self.card_use2_suits = self.pc_cards[3] 
                         #third card to use pc
-                        self.card_use2 = self.pc_cards[1]
-                        self.card_use2_suits = self.pc_cards[4]
+                        self.card_use3 = self.pc_cards[1]
+                        self.card_use3_suits = self.pc_cards[4]
                  
             else:
                 #can't use the strategy 
@@ -295,9 +295,8 @@ class Truco:
                 self.card_use2 = self.pc_cards[1]
                 self.card_use2_suits = self.pc_cards[4] 
                 #third card to use pc
-                self.card_use2 = self.pc_cards[2]
-                self.card_use2_suits = self.pc_cards[5]
-                pass
+                self.card_use3 = self.pc_cards[2]
+                self.card_use3_suits = self.pc_cards[5]
 
         strategy_pc()
         
@@ -401,15 +400,16 @@ class Truco:
 
             #comparação de cartas
             def compare_cards():
-                if self.round_count == 1:
+                round_func = self.round_count
+
+                #checking who wins the first round
+                if round_func == 1:
                     index_user_1 = self.truco_cards.index(usercard_chose1[0])
                     index_pc_1 = self.truco_cards.index(self.card_use1)
 
                     index_user_1_suit = self.truco_suits.index(usercard_chose1[1])
                     index_pc_1_suit = self.truco_suits.index(self.card_use1_suits)
 
-
-                    #checking who wins the first round
                     if index_pc_1 == self.manilha or index_user_1 < index_pc_1 and index_pc_1 != self.manilha:
                         print(f'\nThe card your opponent chose was: {self.card_use1}')
                         self.user_score += 1
@@ -429,7 +429,47 @@ class Truco:
                     elif index_pc_1 > index_user_1 or index_pc_1 == self.manilha:
                         print(f'\nYou lost the first round!')
                         print(f'Your enemy played: {self.card_use1}')
-                
+
+
+                else:
+                    if self.user_score == 0:
+                        print("Let's see if you continue losing ")
+                    else:
+                        print('You gonna continue winning')
+
+                    index_user_2 = self.truco_cards.index(usercard_chose2[0])
+                    index_pc_2 = self.truco_cards.index(self.card_use2)
+
+                    index_user_2_suit = self.truco_suits.index(usercard_chose2[1])
+                    index_pc_2_suit = self.truco_suits.index(self.card_use2_suits)
+
+                    if index_pc_2 == self.manilha or index_user_2 < index_pc_2 and index_pc_2 != self.manilha:
+                        print(f'\nYour opponent used: {self.card_use1}')
+                        self.user_score += 1
+                        print('So you won the round!')
+
+                    elif index_pc_2 == index_user_2:
+                        if index_user_2_suit < index_pc_2_suit:
+                            print(f'\nBoth of you chose to play: {self.card_use1}')
+                            self.user_score += 1
+                            print(f'But your suit was better')
+                        elif index_user_2_suit > index_pc_2_suit:
+                            print(f'\nYou and your opponent played: {self.card_use1}')
+                            print(f'But your suit was worse than his')
+                            if self.user_score == 0:
+                                print(f'you are the loser')
+                        elif index_pc_2_suit == index_user_2_suit:
+                            print('\nWow! that was a complete draw')
+                            if self.user_score == 0:
+                                print(f'And that is how you lose to a computer')
+                   
+                    elif index_pc_2 > index_user_2 or index_pc_2 == self.manilha:
+                        print(f'\nYou lost the second round!')
+                        print(f'Your enemy used: {self.card_use1}')
+                        if self.user_score == 0:
+                            print(f'How can you be so bad at a game')
+
+            
 
             compare_cards()
 
