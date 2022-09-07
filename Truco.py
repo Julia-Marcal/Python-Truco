@@ -4,6 +4,7 @@ from pickle import TRUE
 import random
 import string
 from timeit import repeat
+from turtle import exitonclick
 
 """
 #Array of cards and suits.
@@ -300,12 +301,14 @@ class Truco:
 
         strategy_pc()
         
-        self.round_count = 0
+        self.round_count = int(0)
 
 
         #rounds for user          
         if self.round_count<3:
             self.user_score = 0
+            won_1st_round = False
+
             #First round
             if self.round_count == 0:
                 print(f'Your cards are: {self.user_cards}')
@@ -399,11 +402,12 @@ class Truco:
                     return
 
             #comparação de cartas
-            def compare_cards():
-                round_func = self.round_count
+            def compare_cards(num_round):
+                print(num_round)
 
                 #checking who wins the first round
-                if round_func == 1:
+                if num_round == 1:
+                    print('test')
                     index_user_1 = self.truco_cards.index(usercard_chose1[0])
                     index_pc_1 = self.truco_cards.index(self.card_use1)
 
@@ -413,6 +417,7 @@ class Truco:
                     if index_pc_1 == self.manilha or index_user_1 < index_pc_1 and index_pc_1 != self.manilha:
                         print(f'\nThe card your opponent chose was: {self.card_use1}')
                         self.user_score += 1
+                        won_1st_round = True
                         print('You won this round!')
 
                     elif index_pc_1 == index_user_1:
@@ -420,59 +425,117 @@ class Truco:
                             print(f'\nBoth of you chose to play: {self.card_use1}')
                             self.user_score += 1
                             print(f'But your suit was better')
+                            won_1st_round = True
+
                         elif index_user_1_suit > index_pc_1_suit:
                             print(f'\nYou and your opponent played: {self.card_use1}')
                             print(f'But your suit was worse than his')
+
                         elif index_pc_1_suit == index_user_1_suit:
                             print('\nWow! that was a complete draw')
-                    
+                  
                     elif index_pc_1 > index_user_1 or index_pc_1 == self.manilha:
                         print(f'\nYou lost the first round!')
                         print(f'Your enemy played: {self.card_use1}')
 
-
                 else:
-                    if self.user_score == 0:
-                        print("Let's see if you continue losing ")
-                    else:
-                        print('You gonna continue winning')
+                    if num_round == 2:
 
-                    index_user_2 = self.truco_cards.index(usercard_chose2[0])
-                    index_pc_2 = self.truco_cards.index(self.card_use2)
-
-                    index_user_2_suit = self.truco_suits.index(usercard_chose2[1])
-                    index_pc_2_suit = self.truco_suits.index(self.card_use2_suits)
-
-                    if index_pc_2 == self.manilha or index_user_2 < index_pc_2 and index_pc_2 != self.manilha:
-                        print(f'\nYour opponent used: {self.card_use1}')
-                        self.user_score += 1
-                        print('So you won the round!')
-
-                    elif index_pc_2 == index_user_2:
-                        if index_user_2_suit < index_pc_2_suit:
-                            print(f'\nBoth of you chose to play: {self.card_use1}')
-                            self.user_score += 1
-                            print(f'But your suit was better')
-                        elif index_user_2_suit > index_pc_2_suit:
-                            print(f'\nYou and your opponent played: {self.card_use1}')
-                            print(f'But your suit was worse than his')
-                            if self.user_score == 0:
-                                print(f'you are the loser')
-                        elif index_pc_2_suit == index_user_2_suit:
-                            print('\nWow! that was a complete draw')
-                            if self.user_score == 0:
-                                print(f'And that is how you lose to a computer')
-                   
-                    elif index_pc_2 > index_user_2 or index_pc_2 == self.manilha:
-                        print(f'\nYou lost the second round!')
-                        print(f'Your enemy used: {self.card_use1}')
                         if self.user_score == 0:
-                            print(f'How can you be so bad at a game')
+                            print("\nLet's see if you continue losing ")
+                        else:
+                            print('\nYou gonna continue winning?')
 
-            
+                        index_user_2 = self.truco_cards.index(usercard_chose2[0])
+                        index_pc_2 = self.truco_cards.index(self.card_use2)
 
-            compare_cards()
+                        index_user_2_suit = self.truco_suits.index(usercard_chose2[1])
+                        index_pc_2_suit = self.truco_suits.index(self.card_use2_suits)
 
+                        if index_pc_2 == self.manilha or index_user_2 < index_pc_2 and index_pc_2 != self.manilha:
+                            print(f'\nYour opponent used: {self.card_use1}')
+                            self.user_score += 1
+                            print('So you won the round!')
+                            if self.user_score == 2:
+                                print(f"Didn't expect you to win so fast")
+                                exit
+
+                        elif index_pc_2 == index_user_2:
+                            if index_user_2_suit < index_pc_2_suit:
+                                print(f'\nBoth of you chose to play: {self.card_use1}')
+                                self.user_score += 1
+                                print(f'But your suit was better')
+                                if self.user_score == 2:
+                                    print(f"Didn't expect you to win so fast")
+                                    exit
+
+                            elif index_user_2_suit > index_pc_2_suit:
+                                print(f'\nYou and your opponent played: {self.card_use1}')
+                                print(f'But your suit was worse than his')
+                                if self.user_score == 0:
+                                    print(f'you are the loser')
+                                    exit
+                            elif index_pc_2_suit == index_user_2_suit:
+                                print('\nWow! that was a complete draw')
+                                if self.user_score == 0:
+                                    print(f'And that is how you lose to a computer')
+                                    exit
+                    
+                        elif index_pc_2 > index_user_2 or index_pc_2 == self.manilha:
+                            print(f'\nYou lost the second round!')
+                            print(f'Your enemy used: {self.card_use1}')
+                            if self.user_score == 0:
+                                print(f'How can you be so bad at a game')
+                                exit
+                        
+                    elif num_round == 3:
+
+                        print("Let's see if you can win to a computer")
+
+                        index_user_3 = self.truco_cards.index(usercard_chose3[0])
+                        index_pc_3 = self.truco_cards.index(self.card_use3)
+
+                        index_user_3_suit = self.truco_suits.index(usercard_chose3[1])
+                        index_pc_3_suit = self.truco_suits.index(self.card_use3_suits)
+
+                        if index_pc_3 == self.manilha or index_user_3 < index_pc_3 and index_pc_3 != self.manilha:
+                            print(f'\nYour opponent used: {self.card_use1}')
+                            self.user_score += 1
+                            print('WOW you won the game!')
+                            exit
+
+                        elif index_pc_3 == index_user_3:
+                            if index_user_3_suit < index_pc_3_suit:
+                                print(f'\nBoth of you chose to play: {self.card_use1}')
+                                self.user_score += 1
+                                print(f'Your suit was better')
+                                print(f'You won the game')
+                                exit
+
+                            elif index_user_3_suit > index_pc_3_suit:
+                                print(f'\nYou and your opponent played: {self.card_use1}')
+                                print(f'But your suit was worse than his')
+                                print(f'You lose')
+                                exit
+
+                            elif index_pc_3_suit == index_user_3_suit:
+                                print('\nWow! that was a complete draw')
+                                if won_1st_round:
+                                    print(f'But you won the 1st round, so you won the game')
+                                    exit
+                                else:
+                                    print(f'You lost the 1st round...')
+                                    print(f"That is how you lose to a pc")
+                                    exit
+                    
+                        elif index_pc_3 > index_user_3 or index_pc_3 == self.manilha:
+                            print(f'\nYou lost the 3rd round!')
+                            print(f'Your enemy used: {self.card_use1}')
+                            if self.user_score < 2:
+                                print(f'How can you be so bad at a game')
+                                exit    
+
+            compare_cards(self.round_count)
 
             #Second round
             if self.round_count == 1:
@@ -517,11 +580,14 @@ class Truco:
                     print('Error, this card is not available')
                     return
 
+            compare_cards(self.round_count)
+
             #Terceiro round
             if self.round_count == 2:
                 print(f'The only card left is: {self.user_cards}')
                 usercard_chose3 = [self.user_cards[0], self.user_cards[1]]
                 self.user_cards.remove(self.user_cards[0] and self.user_cards[1])
-                return
+
+            compare_cards(self.round_count)
 
 truco = Truco()
