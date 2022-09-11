@@ -90,69 +90,71 @@ class Truco:
         #Checking pc cards
         for cont in range(4):
 
-            if cont == 3:
+            if cont == 3 or cont > 3:
                 self.value_card = [first_card, sec_card, third_card]
                 break 
 
             else:  
                 #Has Manilha card
                 if self.pc_cards[cont] == self.manilha:
-                    if cont == 0:
-                        first_card = "Manilha"
-                        cont += 1
+                    if cont == 0 or cont == 1 or cont == 2:
+                        if cont == 0:
+                            first_card = "Manilha"
+                            cont += 1
 
-                    elif cont == 1:
-                        sec_card = "Manilha"
-                        cont +=  1
-                    
-                    elif cont == 2:
-                        third_card = "Manilha"
-                        cont +=  1
-                        
+                        elif cont == 1:
+                            sec_card = "Manilha"
+                            cont +=  1
+
+                        elif cont == 2:
+                            third_card = "Manilha"
+                            cont +=  1
 
                 #Has Very good card       
                 elif self.pc_cards[cont] in self.truco_cards[:3]:
-                    if cont == 0:
-                        first_card = "Very Good"
-                        cont += 1
+                    if cont == 0 or cont == 1 or cont == 2:
+                        if cont == 0:
+                            first_card = "Very Good"
+                            cont += 1
 
-                    elif cont == 1:
-                        sec_card = "Very Good"
-                        cont +=  1
-                    
-                    elif cont == 2:
-                        third_card = "Very Good"
-                        cont +=  1
+                        elif cont == 1:
+                            sec_card = "Very Good"
+                            cont +=  1
 
+                        elif cont == 2:
+                            third_card = "Very Good"
+                            cont +=  1
 
                 #Has Good card           
                 elif self.pc_cards[cont] in self.truco_cards[2:6]:
-                    if cont == 0:
-                        first_card = "Good"
-                        cont += 1 
+                    if cont == 0 or cont == 1 or cont == 2:   
+                        if cont == 0:
+                            first_card = "Good"
+                            cont += 1 
 
-                    elif cont == 1:
-                        sec_card = "Good"
-                        cont += 1
-                    
-                    elif cont == 2:
-                        third_card = "Good"
-                        cont +=  1
+                        elif cont == 1:
+                            sec_card = "Good"
+                            cont += 1
+                        
+                        elif cont == 2:
+                            third_card = "Good"
+                            cont +=  1
 
                 
                 #Has Bad card   
-                elif self.pc_cards[cont] in self.truco_cards[5:-1]:
-                    if cont == 0:
-                        first_card = "Bad"
-                        cont += 1 
-                    
-                    elif cont == 1:
-                        sec_card = "Bad"
-                        cont += 1 
-                    
-                    elif cont == 2:
-                        third_card = "Bad"
-                        cont +=  1
+                elif self.pc_cards[cont] in self.truco_cards[5:12]:
+                    if cont == 0 or cont == 1 or cont == 2: 
+                        if cont == 0:
+                            first_card = "Bad"
+                            cont += 1 
+                        
+                        elif cont == 1:
+                            sec_card = "Bad"
+                            cont += 1 
+                        
+                        elif cont == 2:
+                            third_card = "Bad"
+                            cont +=  1
                  
 
         def strategy_pc():
